@@ -111,10 +111,51 @@ class TicTacToebtwHumans
 
 }
 
+
+class TicTacToebtwHumananAndMachine extends TicTacToebtwHumans
+{
+    public TicTacToebtwHumananAndMachine(String s){
+        super(s);
+    }
+    public void gameStart()
+    {
+            int i, j;
+            boolean turn = true;
+            char winner = 'w';
+            while( winner == 'w' && !draw()){
+                if(turn){
+                    System.out.println("Player 1's turn, Enter the coordinates");
+                    i = in.nextInt();
+                    j = in.nextInt();
+                    board[i][j] = 'X';
+                }
+                else{
+                   System.out.println("Computer's turn, Enter the coordinates");
+                   for(int x = 0; x < 3; x++)
+                    for(int y = 0; y < 3; y++)
+                       if(board[x][y] == ' '){
+                           board[x][y] = 'O';
+                           x = 4;
+                           y = 4;
+                       }  
+                }
+                turn = !turn;
+                displayBoard();
+                winner = win();
+                 
+                if(winner == 'O') System.out.println("Computer is the winner");
+                else if(winner == 'X')
+                      System.out.println( winner + " is the winnner");
+                
+             }
+     }             
+}
+
 public class project
 {
     public static void main(String args[]){
      System.out.println("enter 1 to start the game Between human and human");  
+     System.out.println("enter 2 to start the game Between human and Computer");
      Scanner in = new Scanner(System.in);
      int gametype = in.nextInt();
      if(gametype == 1){
@@ -122,5 +163,10 @@ public class project
          t.displayBoard();
          t.gameStart();
          }
+     else{
+        TicTacToebtwHumananAndMachine t = new TicTacToebtwHumananAndMachine("Computer");
+         t.displayBoard();
+         t.gameStart();
+     }    
      }
 }
