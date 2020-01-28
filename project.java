@@ -4,14 +4,14 @@ class TicTacToebtwHumans
 {
    public char [][] board = new char[3][3]; 
    Scanner in = new Scanner(System.in);
-   public TicTacToebtwHumans(String s){
+   public TicTacToebtwHumans(){
      
     for(int i = 0; i < 3; i++){
         for(int j = 0; j < 3; j++){
             board[i][j] = ' ';
         }  
        }
-       System.out.println("You started the game between Human vs " + s);
+       
    }
 
    public void displayBoard()
@@ -27,9 +27,9 @@ class TicTacToebtwHumans
    public void gameStart()
    {
            int i, j;
-           boolean turn = true;
+           boolean turn = true, ifdraw = false;
            char winner = 'w';
-           while( winner == 'w' && !draw()){
+           while( winner == 'w' && !ifdraw ){
                if(turn){
                    System.out.println("Player 1's turn, Enter the coordinates");
                    i = in.nextInt();
@@ -44,129 +44,188 @@ class TicTacToebtwHumans
                }
                turn = !turn;
                displayBoard();
-               winner = win();
+               ifdraw = draw(board, 0, 0);
+               if(ifdraw == true)System.out.println("It's a draw");
+               winner = win(board, 0, 0);
                if(winner != 'w')
                System.out.println( winner + " is the winnner");
             }
     }          
   
-   public char win()
+   public char win(char[][] board, int x, int y)
    {
     for (int a = 0; a < 8; a++) {
         switch (a) {
         case 0:
              
-            if(board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') return 'X';
-            else if( board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O' ) return 'O';
+            if(board[0 + x][0 + y] == 'X' && board[0 + x][1 + y] == 'X' && board[0 + x][2 + y] == 'X') return 'X';
+            else if( board[0 + x][0 + y] == 'O' && board[0 + x][1 + y] == 'O' && board[0 + x][2 + y] == 'O' ) return 'O';
              
             break;
         case 1:
              
-            if(board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') return 'X';
-            else if( board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O' ) return 'O';
+            if(board[1 + x][0 + y] == 'X' && board[1 + x][1 + y] == 'X' && board[1 + x][2 + y] == 'X') return 'X';
+            else if( board[1 + x][0 + y] == 'O' && board[1 + x][1 + y] == 'O' && board[1 + x][2 + y] == 'O' ) return 'O';
              break;
         case 2:
-            if(board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X') return 'X';
-            else if( board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O' ) return 'O';
+            if(board[2 + x][0 + y] == 'X' && board[2 + x][1 + y] == 'X' && board[2 + x][2 + y] == 'X') return 'X';
+            else if( board[2 + x][0 + y] == 'O' && board[2 + x][1 + y] == 'O' && board[2 + x][2 + y] == 'O' ) return 'O';
             break;
         case 3:
             
-            if(board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X') return 'X';
-            else if( board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O' ) return 'O';
+            if(board[0 + x][0 + y] == 'X' && board[1 + x][0 + y] == 'X' && board[2 + x][0 + y] == 'X') return 'X';
+            else if( board[0 + x][0 + y] == 'O' && board[1 + x][0 + y] == 'O' && board[2 + x][0 + y] == 'O' ) return 'O';
             break;
         case 4:
              
-            if(board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X') return 'X';
-            else if( board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O' ) return 'O';
+            if(board[0 + x][1 + y] == 'X' && board[1 + x][1 + y] == 'X' && board[2 + x][1 + y] == 'X') return 'X';
+            else if( board[0 + x][1 + y] == 'O' && board[1 + x][1 + y] == 'O' && board[2 + x][1 + y] == 'O' ) return 'O';
             break;
         case 5:
              
-            if(board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X') return 'X';
-            else if( board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O' ) return 'O';
+            if(board[0 + x][2 + y] == 'X' && board[1 + x][2 + y] == 'X' && board[2 + x][2 + y] == 'X') return 'X';
+            else if( board[0 + x][2 + y] == 'O' && board[1 + x][2 + y] == 'O' && board[2 + x][2 + y] == 'O' ) return 'O';
             break;
         case 6:
             
-            if(board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') return 'X';
-            else if( board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O' ) return 'O';
+            if(board[0 + x][0 + y] == 'X' && board[1 + x][1 + y] == 'X' && board[2 + x][2 + y] == 'X') return 'X';
+            else if( board[0 + x][0 + y] == 'O' && board[1 + x][1 + y] == 'O' && board[2 + x][2 + y] == 'O' ) return 'O';
             break;
         case 7:
             
-            if(board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X') return 'X';
-            else if( board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O' ) return 'O';
+            if(board[0 + x][2 + y] == 'X' && board[1 + x][1 + y] == 'X' && board[2 + x][0 + y] == 'X') return 'X';
+            else if( board[0 + x][2 + y] == 'O' && board[1 + x][1 + y] == 'O' && board[2 + x][0 + y] == 'O' ) return 'O';
             break;
         }
           
     }
     return 'w'; 
    }
-    public boolean draw()
+    public boolean draw(char [][] board, int x, int y)
     {
         for(int i = 0; i < 3; i++)
          for(int j = 0; j < 3; j++)
-          if(board[i][j] == ' ') return false;
+          if(board[i + x][j + y] == ' ') return false;
         
-        System.out.println("It's a draw");
+        
         return true;  
     }
 
 }
 
+ 
 
-class TicTacToebtwHumananAndMachine extends TicTacToebtwHumans
+class NineCrossNine extends TicTacToebtwHumans
 {
-    public TicTacToebtwHumananAndMachine(String s){
-        super(s);
+    char [][] gameboard = new char[9][9];
+
+    public NineCrossNine(){
+     
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                gameboard[i][j] = ' ';
+            }  
+           }
+           
+ }
+
+    public void gameStart(){
+        int i, j;
+        boolean turn = true;
+        char winner = 'w';
+        while( winner == 'w' && !draw()){
+            if(turn){
+                System.out.println("Player 1's turn, Enter the coordinates");
+                i = in.nextInt();
+                j = in.nextInt();
+                gameboard[i][j] = 'X';
+            }
+            else{
+               System.out.println("Player 2's turn, Enter the coordinates");
+               i = in.nextInt();
+               j = in.nextInt();
+               gameboard[i][j] = 'O';
+            }
+            displayBoard();
+            turn = !turn;
+            winner = win(gameboard);
+            if(winner != 'w')
+            System.out.println( winner + " is the winnner");
+         }
     }
-    public void gameStart()
-    {
-            int i, j;
-            boolean turn = true;
-            char winner = 'w';
-            while( winner == 'w' && !draw()){
-                if(turn){
-                    System.out.println("Player 1's turn, Enter the coordinates");
-                    i = in.nextInt();
-                    j = in.nextInt();
-                    board[i][j] = 'X';
-                }
-                else{
-                   System.out.println("Computer's turn, Enter the coordinates");
-                   for(int x = 0; x < 3; x++)
-                    for(int y = 0; y < 3; y++)
-                       if(board[x][y] == ' '){
-                           board[x][y] = 'O';
-                           x = 4;
-                           y = 4;
-                       }  
-                }
-                turn = !turn;
-                displayBoard();
-                winner = win();
+
+    public void displayBoard(){
+        System.out.println("---------------------------------");
+       for(int i =0; i < 9; i++){
+           
+            for(int j = 0; j < 9; j++){
+                if(j == 8)
+                System.out.println(gameboard[i][j] + " | ");
+                else
+                System.out.print(gameboard[i][j] + " | ");
                  
-                if(winner == 'O') System.out.println("Computer is the winner");
-                else if(winner == 'X')
-                      System.out.println( winner + " is the winnner");
-                
-             }
-     }             
+           }
+           System.out.println("-----------------------------------");
+       }
+    }
+    public char win(char[][] gameboard){
+        
+        if(super.win(gameboard, 0, 0) == 'X' && super.win(gameboard, 0, 3) == 'X' && super.win(gameboard, 0, 6) == 'X') return 'X';
+        else if(super.win(gameboard, 0, 0) == 'O' && super.win(gameboard, 0, 3) == 'O' && super.win(gameboard, 0, 6) == 'O')return 'O';
+
+        else if(super.win(gameboard, 3, 0) == 'X' && super.win(gameboard,3, 3) == 'X' && super.win(gameboard, 3, 6) == 'X') return 'X';
+        else if(super.win(gameboard, 3, 0) == 'O' && super.win(gameboard, 3, 3) == 'O' && super.win(gameboard, 3, 6) == 'O')return 'O';  
+        
+        else if(super.win(gameboard,6 , 0) == 'X' && super.win(gameboard, 6, 3) == 'X' && super.win(gameboard, 6, 6) == 'X') return 'X';
+        else if(super.win(gameboard, 6, 0) == 'O' && super.win(gameboard, 6, 3) == 'O' && super.win(gameboard, 6, 6) == 'O')return 'O';  
+
+        else if(super.win(gameboard, 0, 0) == 'X' && super.win(gameboard, 3, 0) == 'X' && super.win(gameboard, 6, 0) == 'X') return 'X';
+        else if(super.win(gameboard, 0, 0) == 'O' && super.win(gameboard, 3, 0) == 'O' && super.win(gameboard, 6, 0) == 'O')return 'O';  
+
+        else if(super.win(gameboard, 0, 3) == 'X' && super.win(gameboard, 3, 3) == 'X' && super.win(gameboard, 6, 3) == 'X') return 'X';
+        else if(super.win(gameboard, 0, 3) == 'O' && super.win(gameboard, 3, 3) == 'O' && super.win(gameboard, 6, 3) == 'O')return 'O';  
+
+        else if(super.win(gameboard, 0, 6) == 'X' && super.win(gameboard, 3, 6) == 'X' && super.win(gameboard, 6, 6) == 'X') return 'X';
+        else if(super.win(gameboard, 0, 6) == 'O' && super.win(gameboard, 3, 6) == 'O' && super.win(gameboard, 6, 6) == 'O')return 'O'; 
+        
+        else if(super.win(gameboard, 0, 0) == 'X' && super.win(gameboard, 3, 3) == 'X' && super.win(gameboard, 6, 6) == 'X') return 'X';
+        else if(super.win(gameboard, 0, 0) == 'O' && super.win(gameboard, 3 ,3) == 'O' && super.win(gameboard, 6, 6) == 'O')return 'O'; 
+        
+        else if(super.win(gameboard, 0, 6) == 'X' && super.win(gameboard, 3, 3) == 'X' && super.win(gameboard, 6, 0) == 'X') return 'X';
+        else if(super.win(gameboard, 0, 6) == 'O' && super.win(gameboard, 3, 3) == 'O' && super.win(gameboard, 6, 0) == 'O')return 'O';  
+
+        else return 'w';
+      
+    }
+
+    public boolean draw(){
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(super.draw(gameboard, 3*i, 3*j) == false) return false;
+            }
+        }
+        return true;
+    }
+
 }
 
 public class project
 {
     public static void main(String args[]){
-     System.out.println("enter 1 to start the game Between human and human");  
-     System.out.println("enter 2 to start the game Between human and Computer");
+     System.out.println("Enter the board dimenstions");  
      Scanner in = new Scanner(System.in);
-     int gametype = in.nextInt();
-     if(gametype == 1){
-         TicTacToebtwHumans t = new TicTacToebtwHumans("Human");
+     int dimensions = in.nextInt();
+     if(dimensions == 3){
+         TicTacToebtwHumans t = new TicTacToebtwHumans();
          t.displayBoard();
          t.gameStart();
          }
-     else{
-        TicTacToebtwHumananAndMachine t = new TicTacToebtwHumananAndMachine("Computer");
+     else if(dimensions == 9){
+         
+         NineCrossNine t = new NineCrossNine();
          t.displayBoard();
          t.gameStart();
-     }    
+     }
+         
      }
 }
